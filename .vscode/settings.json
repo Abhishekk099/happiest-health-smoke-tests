@@ -1,14 +1,6 @@
 {
     "maven.terminal.favorites": [
         {
-            "command": "clean verify -Dcucumber.filter.tags=@ProdMonitoring -Denvironment=qa",
-            "debug": false
-        },
-        {
-            "command": "clean verify .-Dcucumber.filter.tags=@ProdMonitoring .-Denvironment=qa",
-            "debug": false
-        },
-        {
             "command": "clean verify '-Dcucumber.filter.tags=@ProdMonitoring' '-Denvironment=qa'",
             "debug": false
         }
