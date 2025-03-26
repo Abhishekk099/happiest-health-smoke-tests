@@ -1,6 +1,14 @@
 package Tasks;
 
+import net.serenitybdd.screenplay.Performable;
+import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.actions.Click;
+import net.serenitybdd.screenplay.ensure.Ensure;
+
 import java.util.Random;
+
+import static HHPages.HHEvolutionPage.ViewPhotoGallery;
+import static HHPages.HHLandingPage.EditorsPicksSection;
 
 public class FetchSignUpOTP {
 
@@ -20,5 +28,10 @@ public class FetchSignUpOTP {
         int otpLength = 6; // Length of the OTP
         String otp = generateOTP(otpLength);
         System.out.println("Generated OTP: " + otp);
+    }
+
+    public static Performable fromCognitoForLogin() {
+        return Task.where("Clicks on the view Photo Gallery ",
+                Click.on(ViewPhotoGallery));
     }
 }
