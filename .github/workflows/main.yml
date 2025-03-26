@@ -1,8 +1,11 @@
 name: Daily Pipeline
 on:
-  schedule:
-  - cron: "20 12 * * *"
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
  
 jobs:
   build:
