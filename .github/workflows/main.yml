@@ -35,7 +35,12 @@ jobs:
       - name: Run test suites
         run: mvn clean verify -Dcucumber.filter.tags=@HCSAPI -Denvironment=qa
  
+      - name: Run Serenity BDD Tests
+        run: mvn verify -Pdefault
+        continue-on-error: true  # Ensures workflow continues even if tests fail
+
       - name: Upload Serenity Report
+        if: always()  # Ensures report is uploaded even if previous steps fail
         uses: actions/upload-artifact@v4
         with:
           name: serenity-report
