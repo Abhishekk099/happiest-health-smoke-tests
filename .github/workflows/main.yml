@@ -1,0 +1,37 @@
+name: Daily Pipeline
+on:
+  schedule:
+  - cron: "20 12 * * *"
+  workflow_dispatch:
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Upgrade Packages
+        run: |
+          sudo apt update
+          sudo apt upgrade -y
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '21'
+ 
+      - name: Install Maven
+        run: |
+          sudo apt update
+          sudo apt install maven -y
+ 
+      - name: Run test suites
+        run: |
+          mvn clean verify -Dcucumber.filter.tags=@ProdMonitoring -Denvironment=prod
+ 
+      - name: Upload Test Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: serenity-summary.html
+          path: target/site/serenity/serenity-summary.html
