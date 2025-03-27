@@ -32,11 +32,8 @@ jobs:
       - name: Install Dependencies
         run: mvn clean install -DskipTests
  
-      - name: Run test suites
-        run: mvn clean verify -Dcucumber.filter.tags=@HCSAPI -Denvironment=qa
- 
-      - name: Run Serenity BDD Tests
-        run: mvn verify -Pdefault
+      - name: Run Happiest Health test suite
+        run: mvn clean verify -Dcucumber.filter.tags=@HCSUI -Denvironment=qa
         continue-on-error: true  # Ensures workflow continues even if tests fail
 
       - name: Upload Serenity Report
